@@ -20,4 +20,4 @@ Route::get('/', function () {
 Route::get('/login','LoginController@index')->name('login.index');
 Route::post('/login',['uses'=>'LoginController@verify']);
 
-Route::resource('employer','EmployeerController');
+Route::middleware('sess')->middleware('type')->resource('employer','EmployeerController');

@@ -18,7 +18,7 @@ class EmployeerController extends Controller
         $users=DB::table('employeers')
             ->get();
         //$users=$user->all();
-        return view('employer.index')->with('users',$users);
+        return view('admin.index')->with('users',$users);
     }
 
     /**
@@ -28,7 +28,7 @@ class EmployeerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
