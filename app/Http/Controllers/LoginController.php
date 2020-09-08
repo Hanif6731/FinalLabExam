@@ -41,12 +41,14 @@ class LoginController extends Controller
 
                 if ($data[0]->username == 'admin') {
                     $request->session()->put('type', 'admin');
+                    return redirect()->route('employer.index');
                 }
                 else {
                     $request->session()->put('type','employer');
+                    return redirect()>route('job.index');
                 }
 
-                return redirect()->route('employer.index');
+
             } else {
                 $request->session()->flash('msg', 'invalid Credentials');
                 return redirect()->route('login.index');

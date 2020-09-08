@@ -31,9 +31,9 @@
             <td>{{$user->contact}}</td>
             <td>{{$user->username}}</td>
             <td>
-                <a href="{{route('employer.edit',$user->id)}}">Edit</a> |
-                <a href="{{route('employer.destroy',$user->id)}}">Delete</a> |
-                <a href="{{route('employer.show',$user->id)}}">Details</a> |
+                <a href="{{route('employer.edit',$users[$i]->id)}}">Edit</a> |
+                <a href="{{route('employer.delete',$users[$i]->id)}}">Delete</a> |
+                <a href="{{route('employer.show',$users[$i]->id)}}">Details</a> |
             </td>
         </tr>
     @endforeach

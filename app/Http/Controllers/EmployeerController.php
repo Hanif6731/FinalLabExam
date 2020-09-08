@@ -20,7 +20,7 @@ class EmployeerController extends Controller
         $users=DB::table('employeers')
             ->get();
         //$users=$user->all();
-        return view('admin.index')->with('users',$users);
+        return view('employer.index')->with('users',$users);
     }
 
     /**
@@ -30,7 +30,7 @@ class EmployeerController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        return view('employer.create');
     }
 
     /**
@@ -57,9 +57,10 @@ class EmployeerController extends Controller
      * @param  \App\employeer  $employeer
      * @return \Illuminate\Http\Response
      */
-    public function show(employeer $employeer)
+    public function show($employeer)
     {
-        //
+        $employeer=employeer::find($employeer);
+        return view('employer.show')->with('user',$employeer);
     }
 
     /**
@@ -68,9 +69,10 @@ class EmployeerController extends Controller
      * @param  \App\employeer  $employeer
      * @return \Illuminate\Http\Response
      */
-    public function edit(employeer $employeer)
+    public function edit($employeer)
     {
-        //
+        $employeer=employeer::find($employeer);
+        return view('employer.edit')->with('user',$employeer);
     }
 
     /**
@@ -80,9 +82,16 @@ class EmployeerController extends Controller
      * @param  \App\employeer  $employeer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, employeer $employeer)
+    public function update(adminRequests $request,$employeer)
     {
-        //
+        $emp=employeer::find($employeer);
+        $emp->name=$request->name;
+        $emp->username=$request->username;
+        $emp->password=$request->password;
+        $emp->company=$request->company;
+        $emp->contact=$request->contact;
+        $emp->save();
+        return redirect()->route('employer.index');
     }
 
     /**
@@ -91,8 +100,16 @@ class EmployeerController extends Controller
      * @param  \App\employeer  $employeer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(employeer $employeer)
+    public function destroy(Request $request,$employeer)
     {
-        //
+        if(employeer::destroy($employeer))
+        return redirect()->route('employer.index');
+        else
+            return redirect()->route('employer.delete',$employeer);
+    }
+
+    public function delete($id){
+        $employer=employeer::find($id);
+        return view('employer.delete')->with('user',$employer);
     }
 }
