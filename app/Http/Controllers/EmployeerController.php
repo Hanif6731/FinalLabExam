@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\employeer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeerController extends Controller
 {
@@ -14,7 +15,10 @@ class EmployeerController extends Controller
      */
     public function index(Request $request)
     {
-
+        $users=DB::table('employeers')
+            ->get();
+        //$users=$user->all();
+        return view('employer.index')->with('users',$users);
     }
 
     /**
