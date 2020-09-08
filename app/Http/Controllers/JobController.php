@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\employeer;
 use App\job;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class JobController extends Controller
@@ -113,5 +114,24 @@ class JobController extends Controller
     public function delete($id){
         $job=job::find($id);
         return view('job.delete')->with('job',$job);
+    }
+
+    public function search(){
+        return view('job.search');
+    }
+
+    public function find($searchString){
+        if($searchString!='') {
+            $jobs = DB::table('jobs')
+                ->where('title', 'like', strval($searchString) . '%')
+                ->orWhere('title', 'like', '%'.strval($searchString))
+                ->orWhere('company', 'like', strval($searchString))
+                ->orWhere('location','like', $searchString);
+            //print_r($jobs);
+            return Response::json($jobs);
+        }
+        else{
+            return [];
+        }
     }
 }

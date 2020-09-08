@@ -21,8 +21,12 @@ Route::get('/login','LoginController@index')->name('login.index');
 Route::post('/login',['uses'=>'LoginController@verify']);
 
 Route::middleware('sess')->middleware('type')->resource('employer','EmployeerController');
-Route::middleware('sess')->middleware('type')->get('employer/delete/{id}','EmployeerController@delete')
+Route::middleware('sess')->middleware('type')->get('/employer/delete/{id}','EmployeerController@delete')
     ->name('employer.delete');
 Route::middleware('sess')->resource('job','JobController');
-Route::middleware('sess')->get('job/delete/{id}','JobController@delete')
+Route::middleware('sess')->get('/job/delete/{id}','JobController@delete')
     ->name('job.delete');
+Route::middleware('sess')->middleware('type')->get('/job/search','JobController@search')
+    ->name('job.search');
+Route::middleware('sess')->middleware('type')->get('/job/search/{searchString}','JobController@find')
+    ->name('job.find');

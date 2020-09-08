@@ -7,7 +7,7 @@
 
 <h1>Welcome home!</h1>
 
-<a href="{{route('employer.create')}}">Create User</a> |
+<a href="{{route('employer.create')}}">Create User</a> | <a href="{{route('job.search')}}">Search job</a>
 {{--<a href="{{route('logout.index')}}">logout</a>--}}
 
 
