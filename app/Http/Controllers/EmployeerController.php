@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\employeer;
+use App\Http\Requests\adminRequests;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,9 +39,16 @@ class EmployeerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(adminRequests $request)
     {
-        //
+        $emp=new employeer();
+        $emp->name=$request->name;
+        $emp->username=$request->username;
+        $emp->password=$request->password;
+        $emp->company=$request->company;
+        $emp->contact=$request->contact;
+        $emp->save();
+        return redirect()->route('employer.index');
     }
 
     /**

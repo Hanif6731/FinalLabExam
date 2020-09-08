@@ -7,7 +7,7 @@
 
 <h1>Create employer page</h1>
 <a href="{{route('employer.index')}}">Back</a>
-<form method="post">
+<form method="post" action="{{route('employer.store')}}">
     <input type="hidden" name="_token" value="{{csrf_token()}}">
     <table>
         <tr>
