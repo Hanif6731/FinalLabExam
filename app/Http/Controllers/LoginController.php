@@ -45,7 +45,7 @@ class LoginController extends Controller
                 }
                 else {
                     $request->session()->put('type','employer');
-                    return redirect()>route('job.index');
+                    return redirect()->route('job.index');
                 }
 
 

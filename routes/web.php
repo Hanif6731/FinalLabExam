@@ -24,3 +24,5 @@ Route::middleware('sess')->middleware('type')->resource('employer','EmployeerCon
 Route::middleware('sess')->middleware('type')->get('employer/delete/{id}','EmployeerController@delete')
     ->name('employer.delete');
 Route::middleware('sess')->resource('job','JobController');
+Route::middleware('sess')->get('job/delete/{id}','JobController@delete')
+    ->name('job.delete');
